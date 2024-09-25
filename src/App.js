@@ -1,39 +1,53 @@
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import "./style.scss";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "./context/AuthContext";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import Products from "./Pages/Products/Products";
+import Product from "./Pages/Product/Product";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
-function App() {
-  const { currentUser } = useContext(AuthContext);
-
-  const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
-      return <Navigate to="/login" />;
-    }
-
-    return children
-  };
+const Layout = () => {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/">
-          <Route
-            index
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+
+    <div className="app">
+
+      <Navbar />
+      <Outlet />
+      <Footer />
+
+    </div>
+
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />, // <Layout/>
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "/products/:id",
+        element: <Products />
+      },
+      {
+        path: "/product/:id",
+        element: <Product />
+      }
+    ]
+  },
+
+]);
+
+function App() {
+
+  return (
+
+    <RouterProvider router={router} />
+
   );
 }
 
