@@ -5,6 +5,8 @@ import Product from "./Pages/Product/Product";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
+import "./style.scss";
+
 const Layout = () => {
 
   return (
