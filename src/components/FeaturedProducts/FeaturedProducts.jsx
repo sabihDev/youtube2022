@@ -3,6 +3,71 @@ import Card from "../Card/Card";
 import "./FeaturedProducts.scss";
 // import useFetch from "../../hooks/useFetch";
 
+const featuredItems = [
+  {
+    id: 1,
+    attributes: {
+      title: "Stylish Jacket",
+      price: 120.0,
+      oldPrice: 150.0,
+      isNew: true,
+      mainImage: {
+        url: "https://via.placeholder.com/300x400?text=Stylish+Jacket+Main"
+      },
+      secondImage: {
+        url: "https://via.placeholder.com/300x400?text=Stylish+Jacket+Second"
+      }
+    }
+  },
+  {
+    id: 2,
+    attributes: {
+      title: "Classic Watch",
+      price: 85.0,
+      oldPrice: 100.0,
+      isNew: false,
+      mainImage: {
+        url: "https://via.placeholder.com/300x400?text=Classic+Watch+Main"
+      },
+      secondImage: {
+        url: "https://via.placeholder.com/300x400?text=Classic+Watch+Second"
+      }
+    }
+  },
+  {
+    id: 3,
+    attributes: {
+      title: "Running Shoes",
+      price: 95.0,
+      oldPrice: 110.0,
+      isNew: true,
+      mainImage: {
+        url: "https://via.placeholder.com/300x400?text=Running+Shoes+Main"
+      },
+      secondImage: {
+        url: "https://via.placeholder.com/300x400?text=Running+Shoes+Second"
+      }
+    }
+  },
+  {
+    id: 4,
+    attributes: {
+      title: "Leather Handbag",
+      price: 140.0,
+      oldPrice: 160.0,
+      isNew: false,
+      mainImage: {
+        url: "https://via.placeholder.com/300x400?text=Leather+Handbag+Main"
+      },
+      secondImage: {
+        url: "https://via.placeholder.com/300x400?text=Leather+Handbag+Second"
+      }
+    }
+  },
+];
+
+
+
 const FeaturedProducts = ({ type }) => {
 //   const { data, loading, error } = useFetch(
 //     `/products?populate=*&[filters][type][$eq]=${type}`
@@ -21,11 +86,11 @@ const FeaturedProducts = ({ type }) => {
         </p>
       </div>
       <div className="bottom">
-        {/* {error
-          ? "Something went wrong!"
-          : loading
-          ? "loading"
-          : data?.map((item) => <Card item={item} key={item.id} />)} */}
+        {
+          featuredItems.map((item) => (
+            <Card item={item} key={item.id} />
+          ))
+        }
       </div>
     </div>
   );
